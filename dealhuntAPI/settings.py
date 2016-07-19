@@ -24,6 +24,8 @@ ALLOWED_HOSTS = []
 
 DATABASE_ROUTERS = ['collector.models.DealhuntRouter']
 
+QUEUE_ID = 102
+
 # Application definition
 
 INSTALLED_APPS = [
