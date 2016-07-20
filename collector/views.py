@@ -11,7 +11,7 @@ def index(request):
 def savetask(request):
     try:
         items = json.loads(request.body.decode('utf-8', errors='ignore'))['items']
-        redis_queue.push(*items)
+        redis_queue.push(*[json.dumps(item) for item in items])
     except UnicodeDecodeError as e:
         return HttpResponse(str(e), status=400)
     except ValueError as e:

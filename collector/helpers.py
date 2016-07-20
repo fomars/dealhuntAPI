@@ -13,3 +13,10 @@ class RedisQueue(object):
     def pop(self):
         """Pop an element from the head of the queue"""
         return self.client.rpop(self.queue_id)
+
+    def popall(self):
+        pipe = self.client.pipeline()
+        responses = pipe.lrange(self.queue_id, 0, -1).delete(self.queue_id).execute()
+        return responses[0]
+
+

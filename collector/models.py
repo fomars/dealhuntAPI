@@ -18,6 +18,10 @@ class Item(models.Model):
         managed = False
         db_table = 'item'
 
+    @classmethod
+    def filter_present(cls, avito_ids):
+        return {i.avito_id for i in cls.objects.filter(avito_id__in=avito_ids)}
+
 
 class DealhuntRouter(object):
     """
